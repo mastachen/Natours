@@ -1,0 +1,117 @@
+.popup {
+    height: 100vh;
+    width: 100vw;
+    position: fixed; //it wont move as we scroll
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9999;
+
+    //display: none; //if we use this property, we can't animate it
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    //check if browser supports property - graceful degradation
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
+    &__content {
+        @include center-vertically-horizontally;
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden; //part of image that is overflowing the box, will be hidden. Otherwise it cover the border radius.
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.25);
+        transition: all .4s .2s; //small delay for this transition. First we allow our background to come in, then we fade in our popup content.
+    }
+
+    &__left {
+        width: 33.333333%;
+        display: table-cell;
+        vertical-align: middle; //we can use this property for table-cell display
+
+        @include respond(tab-land) {
+            display: block;
+            width: 100%;
+            padding: 5rem 0 0 5rem;
+        }
+    }
+
+    &__right {
+        width: 66.666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+
+        @include respond(tab-land) {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+
+        @include respond(tab-land) {
+            width:35%;
+            display: inline;
+            padding-right: 5rem;
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        //prefixes for mozilla
+        -moz-column-count: 2; //divides text into 2 columns
+        -moz-column-gap: 4rem; 
+        -moz-column-rule: 1px solid $color-grey-light-2; //border between columns
+
+        column-count: 2; //divides text into 2 columns
+        column-gap: 4rem; 
+        column-rule: 1px solid $color-grey-light-2; //border between columns
+
+        -moz-hyphens: auto; 
+        -ms-hyphens: auto; 
+        -webkit-hyphens: auto; 
+        hyphens: auto; //will add hyphen when neccessary. Needs to have language specified.
+    }
+
+    //open states
+    &:target { //applies to the element which is the target when we click on a button or url changes that it contains target
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content { //when popup becomes target, select child element
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

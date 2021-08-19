@@ -1,0 +1,42 @@
+/* * is a universal selector, selects each element on page, 
+because of different browser default properties,
+we alse select pseudo elements */
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; /* force inheritance, 
+    all elements will inherit body's box-sizing in this case */
+}
+
+html {
+    // this defines what 1 rem is, that's why we leave it here and not put it in _typography.scss
+    font-size: 62.5%; /* default font size 
+    16px is default browser font size, with 62.6% we make it 10px
+    we use 10px for easier rem conversion (1rem = 10px)
+    best practice is to use percentage value based on default browser font size, 
+    because user can change default browser font size */
+
+    @include respond(tab-land) { // width < 1200?
+        font-size: 56.52%; // 1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) { // width < 900?
+        font-size: 50%; // 1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(big-desktop) { //width > 1800
+        font-size: 75%; // 1rem = 12px, 12/16 = 75%
+    }
+}
+
+body {
+    box-sizing: border-box; /* prevent that borders and headings are added to 
+    total width and height of boxed elements */
+    padding: 3rem;
+
+    @include respond(tab-port) { 
+        padding: 0;
+    }
+}

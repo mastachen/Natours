@@ -1,0 +1,45 @@
+@keyframes moveInLeft { 
+    0% { /* start */
+        opacity: 0; /* element is invisible */
+        transform: translateX(-10rem); /* element is moved more to the left */
+        /* we can also rotate with rotate value */
+        /* good practice to only change 2 properties in animation */
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% { /* finish */
+        opacity: 1;
+        transform: translate(0); /* translate the way it looks now - visibile and on original position */
+    }
+}
+
+@keyframes moveInRight {
+    0% { /* start */
+        opacity: 0; /* element is invisible */
+        transform: translateX(10rem)  /* element is moved more to the right */
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% { /* finish */
+        opacity: 1;
+        transform: translate(0); /* translate the way it looks now - visibile and on original position */
+    }
+}
+
+@keyframes moveInBottom {
+    0% { /* start */
+        opacity: 0;
+        transform: translateY(3rem)
+    }
+
+    100% { /* finish */
+        opacity: 1;
+        transform: translate(0); /* translate the way it looks now */
+    }
+}

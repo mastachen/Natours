@@ -1,0 +1,108 @@
+.btn {
+    &, //this will apply to btn - we have to use it in order for button element to have same properties al link and visited
+    &:link, /* link pseudo class, we use pseudo classes to style element in special states/conditions */
+    &:visited { /* state when user clicked on the button once before */
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem; /* first value is top&bottom, other one is left/right */
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s; /* animate all properties, hover and active will also be animated */
+        position: relative;
+        font-size: $default-font-size;
+
+        //change for the <button> element
+        border:none;
+        cursor: pointer;
+    }
+    
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 
+            0 /* shadow in x direction */
+            0.5rem /* shadow in y direction */
+            1rem /* blur */
+            rgba($color-black,.2); /* color */
+
+        &::after { /* after element on btn hover state */
+            transform: scaleX(1.4) scaleY(1.6); /* increases element */
+            opacity: 0; /* fade out effect */
+        }
+    }
+    
+    &:active,
+    &:focus { /* active pseudo class, when element is clicked */
+        outline: none;
+        transform: translateY(-0.01rem);
+        box-shadow: 
+            0 
+            1rem /* 1rem down*/
+            2rem /* blur */
+            rgba($color-black,.2)
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after { /* another pseudo element for btn--white */
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after { /* another pseudo element for btn-green */
+            background-color: $color-primary;
+        }
+    }
+
+
+    
+    &::after {/* after pseudo class acts like virtual element right after the element we are selecting */
+        content: ""; /* has to be specified always, otherwise element will not appear */
+        display: inline-block; /* has to be specified always, otherwise element will not appear */
+        height: 100%; /* the same as btn */
+        width: 100%; /* the same as btn */
+        border-radius: 10rem; /* the same as btn */
+        position: absolute; /* we put this element on the same positon as parent (btn), 
+        parent needs to have position: relative */
+        top: 0;
+        left: 0;
+        z-index: -1; /* we put this element behind parent (btn) */
+        transition: all .4s;
+    }
+    
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s; /* delay 0.75s */
+        animation-fill-mode: backwards; /* automatically applies styles before animation starts,
+        so that button is not visible from beginning */
+    } 
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary; 
+        padding: 3px; //for really small units, we can use px instead of rem
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}

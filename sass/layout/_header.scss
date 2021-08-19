@@ -1,0 +1,60 @@
+.header {
+    height: 85vh;
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/hero-small.jpg); /* gradient is specified first to be over then image,
+        to right bottom specifies direction of the gradient */
+        /* we use small resolution image for normal screens */
+    background-size: cover; /* tries to fit the element inside of the box*/
+    background-position: top; /* top part of the image stays the same, 
+    bottom part gets cropped when resizing */
+    position: relative; /* origin, used for positioning logo-box */
+
+    //supports needs to have specified property, although it doesn't matter
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* clips image, 
+        we define coordinates of the visible part (4 corners of the image),
+        coordinate system starts on top left corner */
+        height: 95vh;
+    }
+
+    /* media query for min resolution and min width
+        we use ',' for or condition*/
+    @media  (min-resolution: 192dpi) and (min-width: 37.5em), /* 192 dpi is resolution of apple retina screen - high resolutions screen, uses as a reference */
+            (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), /* for safari */
+            (min-width: 125em) { 
+        background-image: linear-gradient(
+            to right bottom, 
+            rgba($color-secondary-light, 0.8),
+            rgba($color-secondary-dark, 0.8)), 
+            url(../img/hero.jpg); /* gradient is specified first to be over then image,
+            to right bottom specifies direction of the gradient */
+    } 
+
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box { /* nesting, copies .header */
+        position: absolute;
+        top: 4rem; /* reference is parent element */
+        left: 4rem;
+    }
+
+    &__logo {
+        height: 3.5rem; /* width will be set automatically with browser */
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* shift element so it positions to center,
+        related to element itself */
+        text-align: center;
+    }
+}
