@@ -23,9 +23,9 @@
 
     /* media query for min resolution and min width
         we use ',' for or condition*/
-    @media  (min-resolution: 192dpi) and (min-width: 37.5em), /* 192 dpi is resolution of apple retina screen - high resolutions screen, uses as a reference */
-            (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), /* for safari */
-            (min-width: 125em) { 
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), /* 192 dpi is resolution of apple retina screen - high resolutions screen, uses as a reference */
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), /* for safari */
+            only screen and (min-width: 125em) { 
         background-image: linear-gradient(
             to right bottom, 
             rgba($color-secondary-light, 0.8),
