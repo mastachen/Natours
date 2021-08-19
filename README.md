@@ -2,8 +2,11 @@
  First project of advanced css course
 
 BEM (block element modifier)
+
 	.block (standalone component, meaningful on its own)
+	
 	.block__element (part of a block with no standalone meaning)
+	
 	.block__element--modifier (a different version of a block or an element)
 	
 7-1 CSS architecture
