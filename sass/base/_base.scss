@@ -40,3 +40,7 @@ body {
         padding: 0;
     }
 }
+
+::selection { //change selected text
+    background-color: $color-primary;
+}
