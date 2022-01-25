@@ -1,5 +1,5 @@
 .btn {
-    &, //this will apply to btn - we have to use it in order for button element to have same properties al link and visited
+    &, //this will apply to btn - we have to use it in order for button element to have same properties as link and visited
     &:link, /* link pseudo class, we use pseudo classes to style element in special states/conditions */
     &:visited { /* state when user clicked on the button once before */
         text-transform: uppercase;
