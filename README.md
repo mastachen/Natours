@@ -1,5 +1,8 @@
 # Natours
- First project of advanced css course
+ First project of advanced css course. 
+ Link to course: https://www.udemy.com/course/advanced-css-and-sass
+
+Below are a few notes to help understand some concepts and elements used in this project.
 
 BEM (block element modifier)
 
